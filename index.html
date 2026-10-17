@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carla Agustina Ruggeri | Analista Funcional</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f1411;
+            --card-bg: #17201a;
+            --card-hover: #1e2b22;
+            --burgundy: #7A2046;
+            --burgundy-light: #9c2b5a;
+            --olive: #4A5D4E;
+            --olive-light: #5f7563;
+            --text-main: #f0f4f1;
+            --text-muted: #a0aba2;
+            --border: #28362d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--card-bg), #111a14);
+            border: 1px solid var(--border);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        header h2 {
+            font-size: 1.2rem;
+            color: var(--olive-light);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+            color: var(--text-muted);
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background-color: var(--burgundy);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(122, 32, 70, 0.4);
+        }
+
+        .btn:hover {
+            background-color: var(--burgundy-light);
+            transform: translateY(-2px);
+        }
+
+        .btn.outline {
+            background-color: transparent;
+            border: 1px solid var(--olive);
+            color: var(--text-main);
+            box-shadow: none;
+        }
+
+        .btn.outline:hover {
+            background-color: var(--olive);
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .grid { grid-template-columns: 1fr; }
+            header h1 { font-size: 2rem; }
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.8rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            border-color: var(--olive);
+            transform: translateY(-4px);
+            background-color: var(--card-hover);
+        }
+
+        .card h4 a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card h4 a:hover {
+            color: var(--burgundy-light);
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            background-color: rgba(74, 93, 78, 0.2);
+            color: var(--olive-light);
+            border: 1px solid var(--olive);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tools {
+            font-size: 0.85rem;
+            color: var(--text-main);
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+        }
+
+        .about-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            color: var(--text-muted);
+        }
+
+        .about-card ul {
+            list-style: none;
+        }
+
+        .about-card li {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .about-card li::before {
+            content: "▪";
+            color: var(--burgundy);
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-badge {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.6rem 1.2rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 4rem;
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <h1>Carla Agustina Ruggeri</h1>
+            <h2>Analista de Sistemas · Analista Funcional</h2>
+            <p>Especializada en relevamiento, análisis, modelado UML y documentación de requerimientos. Transformando necesidades de negocio en soluciones funcionales eficientes.</p>
+            <div class="btn-group">
+                <a href="https://www.linkedin.com/in/carla--ruggeri" target="_blank" class="btn">LinkedIn</a>
+                <a href="https://github.com/carla-ruggeri" target="_blank" class="btn outline">GitHub</a>
+                <a href="mailto:ruggericarlasistemas@gmail.com" class="btn outline">Contacto</a>
+            </div>
+        </header>
+
+        <!-- SOBRE MÍ -->
+        <section>
+            <h3>📌 Sobre mí</h3>
+            <div class="about-card">
+                <ul>
+                    <li><b>Perfil profesional:</b> Analista Funcional con experiencia sólida en el ciclo de vida del requerimiento, asegurando trazabilidad y total alineación con los objetivos del negocio.</li>
+                    <li><b>Formación académica:</b> Egresada como Analista Universitario en Sistemas (Siglo 21) y Especialización en Análisis Funcional (UTN).</li>
+                    <li><b>Enfoque de trabajo:</b> Metodologías ágiles (Scrum/Kanban), definición de épicas, historias de usuario, criterios de aceptación y modelado UML bajo estándar SRS (IEEE 830).</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- PROYECTOS -->
+        <section>
+            <h3>🚀 Proyectos Destacados</h3>
+            <div class="grid">
+                
+                <div class="card">
+                    <div>
+                        <span class="tag">Metodología Ágil</span>
+                        <h4><a href="https://github.com/carla-ruggeri/Analisis-Funcional-Agil---E-commerce" target="_blank">🛒 E-commerce Ágil</a></h4>
+                        <p>Análisis funcional completo: Story Mapping, Roadmap, Product Backlog, Sprint Backlog, Historias de usuario, Épicas y Features.</p>
+                    </div>
+                    <div class="tools"><b>Herramientas:</b> Jira, Confluence, Trello</div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <span class="tag" style="border-color: var(--burgundy); color: #d45087;">ERP & Gestión</span>
+                        <h4><a href="https://github.com/carla-ruggeri/Analisis-diseno-pruebas-de-Sistema-de-gestion-MKS" target="_blank">🏢 Sistema de Gestión MKS</a></h4>
+                        <p>Modelado integral de procesos de negocio, arquitectura funcional y diseño de casos de prueba para sistema de gestión empresarial.</p>
+                    </div>
+                    <div class="tools"><b>Herramientas:</b> UML, Casos de Uso, SQL</div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <span class="tag">Documentación SRS</span>
+                        <h4><a href="https://github.com/carla-ruggeri/Documentacion-SRS-830-Sistema-de-Gestion-Hospitalaria" target="_blank">🏥 Gestión Hospitalaria</a></h4>
+                        <p>Especificación de requerimientos de software formal bajo el estándar internacional IEEE 830 para entorno de salud.</p>
+                    </div>
+                    <div class="tools"><b>Herramientas:</b> Estándar IEEE 830, Requerimientos</div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <span class="tag" style="border-color: var(--burgundy); color: #d45087;">QA & Streaming</span>
+                        <h4><a href="https://github.com/carla-ruggeri/Analisis-Diseno-y-Pruebas-Netflix" target="_blank">🎬 Netflix Clone Analysis</a></h4>
+                        <p>Modelado funcional, diseño de flujos de usuario y ejecución de pruebas de validación para plataforma de streaming.</p>
+                    </div>
+                    <div class="tools"><b>Herramientas:</b> Diagramas de Flujo, Testing QA</div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- HABILIDADES -->
+        <section>
+            <h3>🛠️ Habilidades y Tecnologías</h3>
+            <div class="skills-container">
+                <div class="skill-badge">Análisis Funcional</div>
+                <div class="skill-badge">Scrum / Agile</div>
+                <div class="skill-badge">UML & SRS (IEEE 830)</div>
+                <div class="skill-badge">Jira & Confluence</div>
+                <div class="skill-badge">SQL (PostgreSQL)</div>
+                <div class="skill-badge">Figma</div>
+                <div class="skill-badge">Git & GitHub</div>
+                <div class="skill-badge">Python</div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 Carla Agustina Ruggeri · Analista Funcional</p>
+        </footer>
+    </div>
+
+</body>
+</html>
