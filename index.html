@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carla Agustina Ruggeri | Analista Funcional</title>
+    <title>Carla Agustina Ruggeri · Analista en Sistemas</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="https://api.iconify.design/lucide:terminal.svg?color=%237A2046">
     <style>
         :root {
-            --bg-dark: #0f1411;
-            --card-bg: #17201a;
-            --card-hover: #1e2b22;
+            --bg-dark: #0a0e0b;
+            --card-bg: #131c15;
+            --card-hover: #19261c;
             --burgundy: #7A2046;
             --burgundy-light: #9c2b5a;
             --olive: #4A5D4E;
-            --olive-light: #5f7563;
+            --olive-light: #6a826f;
             --text-main: #f0f4f1;
-            --text-muted: #a0aba2;
-            --border: #28362d;
+            --text-muted: #9aa89e;
+            --border: #233327;
         }
 
         * {
@@ -24,69 +25,123 @@
             margin: 0;
             padding: 0;
             font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
             background-color: var(--bg-dark);
             color: var(--text-main);
             line-height: 1.6;
-            padding: 2rem 1rem;
         }
 
-        .container {
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(10, 14, 11, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a.logo {
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav ul li a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--text-main);
+        }
+
+        main {
             max-width: 900px;
             margin: 0 auto;
+            padding: 7rem 1.5rem 3rem 1.5rem;
         }
 
+        /* HEADER / HERO */
         header {
-            background: linear-gradient(135deg, var(--card-bg), #111a14);
+            background: linear-gradient(135deg, var(--card-bg), #0f1711);
             border: 1px solid var(--border);
-            padding: 3rem 2rem;
-            border-radius: 20px;
-            text-align: center;
-            margin-bottom: 2.5rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            padding: 4rem 2.5rem;
+            border-radius: 24px;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .terminal-prompt {
+            color: var(--olive-light);
+            font-family: monospace;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
         }
 
         header h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 800;
             color: var(--text-main);
             margin-bottom: 0.5rem;
+            letter-spacing: -1px;
         }
 
         header h2 {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: var(--olive-light);
             font-weight: 600;
             margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         header p {
-            max-width: 600px;
-            margin: 0 auto 2rem auto;
             color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 650px;
+            margin-bottom: 2.5rem;
         }
 
         .btn-group {
             display: flex;
-            justify-content: center;
             gap: 1rem;
             flex-wrap: wrap;
+            margin-bottom: 2rem;
         }
 
         .btn {
             background-color: var(--burgundy);
             color: white;
-            padding: 0.7rem 1.5rem;
+            padding: 0.75rem 1.6rem;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
             font-size: 0.9rem;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(122, 32, 70, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .btn:hover {
@@ -105,230 +160,526 @@
             background-color: var(--olive);
         }
 
-        section {
-            margin-bottom: 3rem;
-        }
-
-        section h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-main);
-            display: flex;
+        .status-badge {
+            display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: rgba(74, 93, 78, 0.15);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            border: 1px solid var(--border);
         }
 
-        .grid {
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #22c55e;
+        }
+
+        /* SECCIONES */
+        section {
+            margin-bottom: 4rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header span {
+            color: var(--olive-light);
+            font-family: monospace;
+            font-weight: 700;
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        /* SOBRE MÍ */
+        .about-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: 2fr 1fr;
             gap: 1.5rem;
         }
 
-        @media (max-width: 600px) {
-            .grid { grid-template-columns: 1fr; }
-            header h1 { font-size: 2rem; }
+        @media (max-width: 768px) {
+            .about-grid { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+            header h1 { font-size: 2.2rem; }
+            nav ul { display: none; }
         }
 
         .card {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 1.8rem;
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--olive);
+            background-color: var(--card-hover);
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .info-list dt {
+            font-weight: 700;
+            color: var(--text-main);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* EXPERIENCIA */
+        .experience-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .experience-header h3 {
+            font-size: 1.3rem;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        .experience-header p {
+            color: var(--olive-light);
+            font-size: 0.95rem;
+        }
+
+        .experience-date {
+            background-color: rgba(122, 32, 70, 0.15);
+            color: #d45087;
+            border: 1px solid rgba(122, 32, 70, 0.4);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .experience-card ul {
+            list-style: none;
+        }
+
+        .experience-card li {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .experience-card li::before {
+            content: "•";
+            color: var(--burgundy);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* PROYECTOS */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
-        .card:hover {
+        .project-card:hover {
             border-color: var(--olive);
             transform: translateY(-4px);
             background-color: var(--card-hover);
         }
 
-        .card h4 a {
-            color: var(--text-main);
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .card h4 a:hover {
-            color: var(--burgundy-light);
-        }
-
-        .tag {
+        .project-tag {
             display: inline-block;
             font-size: 0.75rem;
             font-weight: 700;
             text-transform: uppercase;
-            padding: 0.25rem 0.75rem;
+            letter-spacing: 0.5px;
+            padding: 0.3rem 0.8rem;
             border-radius: 20px;
-            margin-bottom: 1rem;
-            background-color: rgba(74, 93, 78, 0.2);
-            color: var(--olive-light);
-            border: 1px solid var(--olive);
+            margin-bottom: 1.2rem;
+            background-color: rgba(122, 32, 70, 0.15);
+            color: #d45087;
+            border: 1px solid rgba(122, 32, 70, 0.4);
         }
 
-        .card p {
+        .project-card h3 a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            display: block;
+            transition: color 0.2s;
+        }
+
+        .project-card h3 a:hover {
+            color: #d45087;
+        }
+
+        .project-card p {
             color: var(--text-muted);
             font-size: 0.95rem;
             margin-bottom: 1.5rem;
         }
 
-        .tools {
+        .project-tools {
             font-size: 0.85rem;
             color: var(--text-main);
             border-top: 1px solid var(--border);
             padding-top: 1rem;
         }
 
-        .about-card {
+        /* TECNOLOGÍAS */
+        .tech-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tech-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.8rem;
+        }
+
+        .tech-box h3 {
+            color: var(--text-main);
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .tech-badge {
+            background-color: rgba(74, 93, 78, 0.15);
+            border: 1px solid var(--olive);
+            color: var(--text-main);
+            padding: 0.4rem 0.9rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* FORMACIÓN */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .education-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 2rem;
-            color: var(--text-muted);
-        }
-
-        .about-card ul {
-            list-style: none;
-        }
-
-        .about-card li {
-            margin-bottom: 1rem;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-
-        .about-card li::before {
-            content: "▪";
-            color: var(--burgundy);
-            position: absolute;
-            left: 0;
-            font-size: 1.2rem;
-        }
-
-        .skills-container {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
+            gap: 1.2rem;
+            align-items: flex-start;
         }
 
-        .skill-badge {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
+        .education-icon {
+            background-color: rgba(122, 32, 70, 0.2);
+            border: 1px solid rgba(122, 32, 70, 0.5);
+            color: #d45087;
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .education-card h3 {
+            font-size: 1.1rem;
             color: var(--text-main);
-            padding: 0.6rem 1.2rem;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            font-weight: 600;
+            margin-bottom: 0.3rem;
         }
 
+        .education-card p {
+            color: var(--olive-light);
+            font-size: 0.9rem;
+        }
+
+        /* FOOTER */
         footer {
             text-align: center;
             color: var(--text-muted);
             font-size: 0.85rem;
-            margin-top: 4rem;
+            margin-top: 5rem;
             border-top: 1px solid var(--border);
             padding-top: 2rem;
         }
     </style>
 </head>
-<body>
+<body id="inicio">
 
-    <div class="container">
-        <!-- HEADER -->
+    <!-- NAVBAR -->
+    <nav>
+        <a href="#inicio" class="logo">Carla Ruggeri</a>
+        <ul>
+            <li><a href="#sobre-mi">Sobre mí</a></li>
+            <li><a href="#experiencia">Experiencia</a></li>
+            <li><a href="#proyectos">Proyectos</a></li>
+            <li><a href="#tecnologias">Tecnologías</a></li>
+            <li><a href="#formacion">Formación</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- HEADER / HERO -->
         <header>
+            <div class="terminal-prompt">$ whoami</div>
             <h1>Carla Agustina Ruggeri</h1>
-            <h2>Analista de Sistemas · Analista Funcional</h2>
-            <p>Especializada en relevamiento, análisis, modelado UML y documentación de requerimientos. Transformando necesidades de negocio en soluciones funcionales eficientes.</p>
+            <h2>Analista en Sistemas · Desarrollo, Testing & Análisis Funcional</h2>
+            <p>Egresada como Analista en Sistemas con formación integral en desarrollo de software, modelado de bases de datos, testing y análisis funcional. Transformando requerimientos complejos en soluciones robustas.</p>
+            
             <div class="btn-group">
-                <a href="CV-AnalisisFuncional-RuggeriCarla.pdf" download class="btn">Descargar CV</a>
+                <a href="#proyectos" class="btn">Ver proyectos</a>
+                <a href="CV-AnalisisFuncional-RuggeriCarla.pdf" download class="btn outline">Descargar CV</a>
                 <a href="https://www.linkedin.com/in/carla--ruggeri" target="_blank" class="btn outline">LinkedIn</a>
-                <a href="https://github.com/carla-ruggeri" target="_blank" class="btn outline">GitHub</a>
-                <a href="mailto:ruggericarlasistemas@gmail.com" class="btn outline">Contacto</a>
+            </div>
+
+            <div class="status-badge">
+                <span class="status-dot"></span>
+                Disponible para oportunidades profesionales · Remoto
             </div>
         </header>
 
         <!-- SOBRE MÍ -->
-        <section>
-            <h3>📌 Sobre mí</h3>
-            <div class="about-card">
+        <section id="sobre-mi">
+            <div class="section-header">
+                <span>01</span>
+                <h2>Sobre mí</h2>
+            </div>
+            <div class="about-grid">
+                <div class="card about-text">
+                    <p>Soy <b>Analista en Sistemas</b> con una sólida <b>Especialización en Análisis Funcional</b>. Mi formación técnica me otorga una visión integral de punta a punta: tengo la capacidad de desarrollar sistemas, diseñar esquemas de bases de datos relacionales, ejecutar testing funcional/QA y liderar el relevamiento de procesos de negocio.</p>
+                    <p>Me enfoco en tender un puente sólido entre las necesidades operativas de las organizaciones y la implementación técnica, aplicando estándares formales de especificación (SRS IEEE 830), modelado UML y metodologías ágiles.</p>
+                </div>
+                <div class="card">
+                    <dl class="info-list">
+                        <div><dt>Título</dt><dd>Analista Universitario en Sistemas</dd></div>
+                        <br>
+                        <div><dt>Especialización</dt><dd>Análisis Funcional (UTN)</dd></div>
+                        <br>
+                        <div><dt>Ubicación</dt><dd>Córdoba, Argentina</dd></div>
+                        <br>
+                        <div><dt>Modalidad</dt><dd>Remoto / Híbrido</dd></div>
+                    </dl>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCIA -->
+        <section id="experiencia">
+            <div class="section-header">
+                <span>02</span>
+                <h2>Experiencia</h2>
+            </div>
+            <div class="experience-card">
+                <div class="experience-header">
+                    <div>
+                        <h3>Analista de Sistemas & Funcional</h3>
+                        <p>Proyectos de Ingeniería de Software & Consultoría</p>
+                    </div>
+                    <span class="experience-date">Enfoque Integral</span>
+                </div>
                 <ul>
-                    <li><b>Perfil profesional:</b> Analista Funcional con experiencia sólida en el ciclo de vida del requerimiento, asegurando trazabilidad y total alineación con los objetivos del negocio.</li>
-                    <li><b>Formación académica:</b> Egresada como Analista Universitario en Sistemas (Siglo 21) y Especialización en Análisis Funcional (UTN).</li>
-                    <li><b>Enfoque de trabajo:</b> Metodologías ágiles (Scrum/Kanban), definición de épicas, historias de usuario, criterios de aceptación y modelado UML bajo estándar SRS (IEEE 830).</li>
+                    <li><b>Desarrollo y Modelado de Sistemas:</b> Creación y diseño de arquitectura funcional para sistemas de gestión (ERP), bases de datos y aplicaciones web.</li>
+                    <li><b>Análisis de Requerimientos y Procesos:</b> Relevamiento, especificación formal (SRS bajo estándar IEEE 830) y modelado UML de casos de uso para sistemas críticos.</li>
+                    <li><b>Metodologías Ágiles y Testing:</b> Gestión de backlogs, épicas, historias de usuario, criterios de aceptación (Jira/Trello) y ejecución de casos de prueba y QA manual.</li>
                 </ul>
             </div>
         </section>
 
         <!-- PROYECTOS -->
-        <section>
-            <h3>🚀 Proyectos Destacados</h3>
-            <div class="grid">
+        <section id="proyectos">
+            <div class="section-header">
+                <span>03</span>
+                <h2>Proyectos Destacados</h2>
+            </div>
+            <div class="projects-grid">
                 
-                <div class="card">
+                <div class="project-card">
                     <div>
-                        <span class="tag">Metodología Ágil</span>
-                        <h4><a href="https://github.com/carla-ruggeri/Analisis-Funcional-Agil---E-commerce" target="_blank">🛒 E-commerce Ágil</a></h4>
-                        <p>Análisis funcional completo: Story Mapping, Roadmap, Product Backlog, Sprint Backlog, Historias de usuario, Épicas y Features.</p>
+                        <span class="project-tag">Metodología Ágil</span>
+                        <h3><a href="https://github.com/carla-ruggeri/Analisis-Funcional-Agil---E-commerce" target="_blank">🛒 E-commerce Ágil</a></h3>
+                        <p>Análisis funcional completo de plataforma de comercio electrónico. Diseño de Story Mapping, Roadmap, Product Backlog, Sprint Backlog e Historias de Usuario.</p>
                     </div>
-                    <div class="tools"><b>Herramientas:</b> Jira, Confluence, Trello</div>
+                    <div class="project-tools"><b>Herramientas:</b> Jira, Confluence, Trello</div>
                 </div>
 
-                <div class="card">
+                <div class="project-card">
                     <div>
-                        <span class="tag" style="border-color: var(--burgundy); color: #d45087;">ERP & Gestión</span>
-                        <h4><a href="https://github.com/carla-ruggeri/Analisis-diseno-pruebas-de-Sistema-de-gestion-MKS" target="_blank">🏢 Sistema de Gestión MKS</a></h4>
-                        <p>Modelado integral de procesos de negocio, arquitectura funcional y diseño de casos de prueba para sistema de gestión empresarial.</p>
+                        <span class="project-tag" style="background-color: rgba(74, 93, 78, 0.2); color: #82a889; border-color: var(--olive);">ERP & Datos</span>
+                        <h3><a href="https://github.com/carla-ruggeri/Analisis-diseno-pruebas-de-Sistema-de-gestion-MKS" target="_blank">🏢 Sistema de Gestión MKS</a></h3>
+                        <p>Modelado integral de procesos de negocio, arquitectura funcional, diseño de bases de datos y ejecución de casos de prueba para sistema ERP.</p>
                     </div>
-                    <div class="tools"><b>Herramientas:</b> UML, Casos de Uso, SQL</div>
+                    <div class="project-tools"><b>Herramientas:</b> UML, Casos de Uso, SQL</div>
                 </div>
 
-                <div class="card">
+                <div class="project-card">
                     <div>
-                        <span class="tag">Documentación SRS</span>
-                        <h4><a href="https://github.com/carla-ruggeri/Documentacion-SRS-830-Sistema-de-Gestion-Hospitalaria" target="_blank">🏥 Gestión Hospitalaria</a></h4>
-                        <p>Especificación de requerimientos de software formal bajo el estándar internacional IEEE 830 para entorno de salud.</p>
+                        <span class="project-tag">Estándar IEEE 830</span>
+                        <h3><a href="https://github.com/carla-ruggeri/Documentacion-SRS-830-Sistema-de-Gestion-Hospitalaria" target="_blank">🏥 Gestión Hospitalaria</a></h3>
+                        <p>Especificación formal de requerimientos de software (SRS) bajo norma internacional IEEE 830 para automatización y control en salud.</p>
                     </div>
-                    <div class="tools"><b>Herramientas:</b> Estándar IEEE 830, Requerimientos</div>
+                    <div class="project-tools"><b>Herramientas:</b> SRS IEEE 830, Requerimientos</div>
                 </div>
 
-                <div class="card">
+                <div class="project-card">
                     <div>
-                        <span class="tag" style="border-color: var(--burgundy); color: #d45087;">QA & Streaming</span>
-                        <h4><a href="https://github.com/carla-ruggeri/Analisis-Diseno-y-Pruebas-Netflix" target="_blank">🎬 Netflix Clone Analysis</a></h4>
-                        <p>Modelado funcional, diseño de flujos de usuario y ejecución de pruebas de validación para plataforma de streaming.</p>
+                        <span class="project-tag" style="background-color: rgba(74, 93, 78, 0.2); color: #82a889; border-color: var(--olive);">Testing & QA</span>
+                        <h3><a href="https://github.com/carla-ruggeri/Analisis-Diseno-y-Pruebas-Netflix" target="_blank">🎬 Análisis Netflix Clone</a></h3>
+                        <p>Modelado funcional, diseño de flujos de usuario y ejecución exhaustiva de pruebas de validación y QA manual para streaming.</p>
                     </div>
-                    <div class="tools"><b>Herramientas:</b> Diagramas de Flujo, Testing QA</div>
+                    <div class="project-tools"><b>Herramientas:</b> Diagramas de Flujo, Testing QA</div>
                 </div>
 
             </div>
         </section>
 
-        <!-- HABILIDADES -->
-        <section>
-            <h3>🛠️ Habilidades y Tecnologías</h3>
-            <div class="skills-container">
-                <div class="skill-badge">Análisis Funcional</div>
-                <div class="skill-badge">Scrum / Agile</div>
-                <div class="skill-badge">UML & SRS (IEEE 830)</div>
-                <div class="skill-badge">Jira & Confluence</div>
-                <div class="skill-badge">SQL (PostgreSQL)</div>
-                <div class="skill-badge">Figma</div>
-                <div class="skill-badge">Git & GitHub</div>
-                <div class="skill-badge">Python</div>
+        <!-- TECNOLOGÍAS -->
+        <section id="tecnologias">
+            <div class="section-header">
+                <span>04</span>
+                <h2>Tecnologías y Competencias</h2>
+            </div>
+            <div class="tech-container">
+                <div class="tech-box">
+                    <h3>Desarrollo y Datos</h3>
+                    <div class="tech-tags">
+                        <span class="tech-badge">Bases de Datos (SQL)</span>
+                        <span class="tech-badge">Modelado Entidad-Relación</span>
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">HTML / CSS</span>
+                    </div>
+                </div>
+                <div class="tech-box">
+                    <h3>Análisis y Documentación</h3>
+                    <div class="tech-tags">
+                        <span class="tech-badge">Análisis Funcional</span>
+                        <span class="tech-badge">SRS (IEEE 830)</span>
+                        <span class="tech-badge">Modelado UML</span>
+                        <span class="tech-badge">Historias de Usuario</span>
+                    </div>
+                </div>
+                <div class="tech-box">
+                    <h3>Testing y Gestión</h3>
+                    <div class="tech-tags">
+                        <span class="tech-badge">Testing & QA Manual</span>
+                        <span class="tech-badge">Scrum / Kanban</span>
+                        <span class="tech-badge">Jira & Confluence</span>
+                        <span class="tech-badge">Git & GitHub</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORMACIÓN -->
+        <section id="formacion">
+            <div class="section-header">
+                <span>05</span>
+                <h2>Formación Académica</h2>
+            </div>
+            <div class="education-grid">
+                <div class="education-card">
+                    <div class="education-icon">UTN</div>
+                    <div>
+                        <h3>Especialización en Análisis Funcional</h3>
+                        <p>UTN - Buenos Aires · 2026</p>
+                    </div>
+                </div>
+                <div class="education-card">
+                    <div class="education-icon">U21</div>
+                    <div>
+                        <h3>Analista Universitario en Sistemas</h3>
+                        <p>Universidad Siglo 21 · 2022 – 2025</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACTO -->
+        <section id="contacto">
+            <div class="section-header">
+                <span>06</span>
+                <h2>Contacto</h2>
+            </div>
+            <div class="card" style="text-align: center; padding: 3rem;">
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 1.1rem;">Abierta a nuevas oportunidades profesionales en desarrollo, testing o análisis de sistemas. Escribime y te respondo dentro de las 24 horas.</p>
+                <div class="btn-group" style="justify-content: center;">
+                    <a href="mailto:ruggericarlasistemas@gmail.com" class="btn">Enviar un correo</a>
+                    <a href="https://www.linkedin.com/in/carla--ruggeri" target="_blank" class="btn outline">LinkedIn</a>
+                </div>
             </div>
         </section>
 
         <footer>
-            <p>© 2026 Carla Agustina Ruggeri · Analista Funcional</p>
+            <p>© 2026 Carla Agustina Ruggeri · Villa del Rosario, Córdoba, Argentina</p>
         </footer>
-    </div>
+    </main>
 
 </body>
 </html>
