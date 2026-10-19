@@ -8,16 +8,17 @@
     <link rel="icon" type="image/svg+xml" href="https://api.iconify.design/lucide:terminal.svg?color=%237A2046">
     <style>
         :root {
-            --bg-dark: #0a0e0b;
-            --card-bg: #131c15;
-            --card-hover: #19261c;
+            --bg-dark: #070b08;
+            --card-bg: #101812;
+            --card-hover: #162219;
             --burgundy: #7A2046;
             --burgundy-light: #9c2b5a;
             --olive: #4A5D4E;
             --olive-light: #6a826f;
-            --text-main: #f0f4f1;
+            --text-main: #f4f7f5;
             --text-muted: #9aa89e;
-            --border: #233327;
+            --border: #1f3024;
+            --border-hover: #344e3a;
         }
 
         * {
@@ -32,35 +33,56 @@
             background-color: var(--bg-dark);
             color: var(--text-main);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* NAVBAR */
+        /* EFECTO DE LUZ DE FONDO */
+        .bg-glow {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(122, 32, 70, 0.15) 0%, rgba(74, 93, 78, 0.05) 50%, transparent 80%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* NAVBAR SUPERIOR FIJA */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(10, 14, 11, 0.9);
-            backdrop-filter: blur(10px);
+            background-color: rgba(7, 11, 8, 0.85);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
             z-index: 1000;
-            padding: 1rem 2rem;
+            padding: 1.2rem 2.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        nav a.logo {
+        .nav-logo {
             font-weight: 800;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: var(--text-main);
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-logo span {
+            color: #d45087;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
         nav ul li a {
@@ -68,7 +90,7 @@
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
         }
 
         nav ul li a:hover {
@@ -76,40 +98,53 @@
         }
 
         main {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 7rem 1.5rem 3rem 1.5rem;
-        }
-
-        /* HEADER / HERO */
-        header {
-            background: linear-gradient(135deg, var(--card-bg), #0f1711);
-            border: 1px solid var(--border);
-            padding: 4rem 2.5rem;
-            border-radius: 24px;
-            margin-bottom: 4rem;
+            padding: 8rem 1.5rem 4rem 1.5rem;
             position: relative;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
-        .terminal-prompt {
+        /* HERO / HEADER SECTION */
+        header {
+            background: linear-gradient(145deg, var(--card-bg), #0c130e);
+            border: 1px solid var(--border);
+            padding: 5rem 3rem;
+            border-radius: 32px;
+            margin-bottom: 5rem;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+
+        .terminal-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             color: var(--olive-light);
             font-family: monospace;
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            background: rgba(74, 93, 78, 0.12);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            margin-bottom: 1.5rem;
         }
 
         header h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 800;
             color: var(--text-main);
             margin-bottom: 0.5rem;
-            letter-spacing: -1px;
+            letter-spacing: -1.5px;
+        }
+
+        header h1 span {
+            background: linear-gradient(135deg, #f4f7f5, #d45087);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         header h2 {
-            font-size: 1.25rem;
+            font-size: 1.35rem;
             color: var(--olive-light);
             font-weight: 600;
             margin-bottom: 1.5rem;
@@ -117,8 +152,8 @@
 
         header p {
             color: var(--text-muted);
-            font-size: 1.05rem;
-            max-width: 650px;
+            font-size: 1.1rem;
+            max-width: 680px;
             margin-bottom: 2.5rem;
         }
 
@@ -126,206 +161,229 @@
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
-            margin-bottom: 2rem;
+            align-items: center;
         }
 
         .btn {
             background-color: var(--burgundy);
             color: white;
-            padding: 0.75rem 1.6rem;
+            padding: 0.85rem 2rem;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(122, 32, 70, 0.4);
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(122, 32, 70, 0.4);
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
+            border: none;
+            cursor: pointer;
         }
 
         .btn:hover {
             background-color: var(--burgundy-light);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(122, 32, 70, 0.6);
         }
 
         .btn.outline {
             background-color: transparent;
-            border: 1px solid var(--olive);
+            border: 1px solid var(--border-hover);
             color: var(--text-main);
             box-shadow: none;
         }
 
         .btn.outline:hover {
-            background-color: var(--olive);
+            background-color: var(--card-hover);
+            border-color: var(--olive);
         }
 
-        .status-badge {
+        .status-indicator {
+            margin-top: 2rem;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 0.85rem;
+            gap: 0.7rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
-            background: rgba(74, 93, 78, 0.15);
-            padding: 0.4rem 1rem;
+            background: rgba(16, 24, 18, 0.8);
+            padding: 0.5rem 1.2rem;
             border-radius: 20px;
             border: 1px solid var(--border);
         }
 
-        .status-dot {
-            width: 8px;
-            height: 8px;
+        .pulse-dot {
+            width: 9px;
+            height: 9px;
             background-color: #22c55e;
             border-radius: 50%;
-            box-shadow: 0 0 8px #22c55e;
+            box-shadow: 0 0 10px #22c55e;
+            animation: pulse 2s infinite;
         }
 
-        /* SECCIONES */
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+
+        /* SECCIONES GENERALES */
         section {
-            margin-bottom: 4rem;
+            margin-bottom: 5rem;
         }
 
         .section-header {
             display: flex;
             align-items: center;
             gap: 1rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .section-header span {
-            color: var(--olive-light);
+            color: #d45087;
             font-family: monospace;
             font-weight: 700;
+            font-size: 1.1rem;
         }
 
         .section-header h2 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
+            letter-spacing: -0.5px;
         }
 
-        /* SOBRE MÍ */
-        .about-grid {
+        /* BENTO GRID SOBRE MÍ */
+        .bento-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
             gap: 1.5rem;
         }
 
         @media (max-width: 768px) {
-            .about-grid { grid-template-columns: 1fr; }
+            .bento-grid { grid-template-columns: 1fr; }
             .projects-grid { grid-template-columns: 1fr; }
-            header h1 { font-size: 2.2rem; }
+            header h1 { font-size: 2.5rem; }
             nav ul { display: none; }
+            header { padding: 3rem 1.5rem; }
         }
 
-        .card {
+        .bento-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 2rem;
+            border-radius: 24px;
+            padding: 2.5rem;
             transition: all 0.3s ease;
         }
 
-        .card:hover {
-            border-color: var(--olive);
+        .bento-card:hover {
+            border-color: var(--border-hover);
             background-color: var(--card-hover);
         }
 
-        .about-text p {
+        .bento-card p {
             color: var(--text-muted);
-            margin-bottom: 1rem;
-            font-size: 1rem;
+            font-size: 1.05rem;
+            margin-bottom: 1.2rem;
         }
 
-        .info-list {
+        .meta-list {
             list-style: none;
         }
 
-        .info-list li {
-            margin-bottom: 0.8rem;
-            font-size: 0.9rem;
-            color: var(--text-muted);
+        .meta-list li {
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
         }
 
-        .info-list dt {
+        .meta-list span {
+            display: block;
+            font-size: 0.75rem;
             font-weight: 700;
             color: var(--text-main);
-            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            margin-bottom: 0.2rem;
         }
 
         /* EXPERIENCIA */
         .experience-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 2.5rem;
-            margin-bottom: 1.5rem;
+            border-radius: 24px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
         }
 
         .experience-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             flex-wrap: wrap;
             gap: 1rem;
         }
 
         .experience-header h3 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--text-main);
             font-weight: 700;
+            margin-bottom: 0.3rem;
         }
 
         .experience-header p {
             color: var(--olive-light);
-            font-size: 0.95rem;
+            font-size: 1rem;
         }
 
-        .experience-date {
-            background-color: rgba(122, 32, 70, 0.15);
+        .badge-date {
+            background-color: rgba(122, 32, 70, 0.2);
             color: #d45087;
             border: 1px solid rgba(122, 32, 70, 0.4);
-            padding: 0.3rem 0.8rem;
+            padding: 0.4rem 1rem;
             border-radius: 20px;
             font-size: 0.85rem;
-            font-weight: 600;
+            font-weight: 700;
         }
 
-        .experience-card ul {
+        .experience-list {
             list-style: none;
         }
 
-        .experience-card li {
+        .experience-list li {
             color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 0.8rem;
+            font-size: 1.02rem;
+            margin-bottom: 1rem;
             position: relative;
-            padding-left: 1.2rem;
+            padding-left: 1.5rem;
         }
 
-        .experience-card li::before {
-            content: "•";
+        .experience-list li::before {
+            content: "▸";
             color: var(--burgundy);
             position: absolute;
             left: 0;
             font-weight: bold;
+            font-size: 1.2rem;
         }
 
-        /* PROYECTOS */
+        /* PROYECTOS GRID */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
             gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .projects-grid { grid-template-columns: 1fr; }
         }
 
         .project-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 2rem;
-            transition: all 0.3s ease;
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -333,8 +391,9 @@
 
         .project-card:hover {
             border-color: var(--olive);
-            transform: translateY(-4px);
+            transform: translateY(-6px);
             background-color: var(--card-hover);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
         .project-tag {
@@ -342,10 +401,10 @@
             font-size: 0.75rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 0.3rem 0.8rem;
+            letter-spacing: 1px;
+            padding: 0.4rem 1rem;
             border-radius: 20px;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
             background-color: rgba(122, 32, 70, 0.15);
             color: #d45087;
             border: 1px solid rgba(122, 32, 70, 0.4);
@@ -354,9 +413,9 @@
         .project-card h3 a {
             color: var(--text-main);
             text-decoration: none;
-            font-size: 1.25rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
             display: block;
             transition: color 0.2s;
         }
@@ -367,115 +426,153 @@
 
         .project-card p {
             color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            margin-bottom: 2rem;
         }
 
         .project-tools {
             font-size: 0.85rem;
             color: var(--text-main);
             border-top: 1px solid var(--border);
-            padding-top: 1rem;
+            padding-top: 1.2rem;
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         /* TECNOLOGÍAS */
-        .tech-container {
+        .tech-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
         }
 
         .tech-box {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 1.8rem;
+            border-radius: 20px;
+            padding: 2.2rem;
+            transition: border-color 0.3s;
+        }
+
+        .tech-box:hover {
+            border-color: var(--border-hover);
         }
 
         .tech-box h3 {
             color: var(--text-main);
-            font-size: 1.1rem;
-            margin-bottom: 1.2rem;
+            font-size: 1.15rem;
+            margin-bottom: 1.5rem;
             font-weight: 700;
             border-bottom: 1px solid var(--border);
-            padding-bottom: 0.5rem;
+            padding-bottom: 0.8rem;
         }
 
-        .tech-tags {
+        .tech-badges {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.6rem;
+            gap: 0.8rem;
         }
 
-        .tech-badge {
+        .badge {
             background-color: rgba(74, 93, 78, 0.15);
             border: 1px solid var(--olive);
             color: var(--text-main);
-            padding: 0.4rem 0.9rem;
-            border-radius: 8px;
-            font-size: 0.85rem;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
             font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .badge:hover {
+            background-color: rgba(74, 93, 78, 0.3);
+            border-color: var(--olive-light);
         }
 
         /* FORMACIÓN */
-        .education-grid {
+        .edu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 1.5rem;
         }
 
-        .education-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2rem;
-            display: flex;
-            gap: 1.2rem;
-            align-items: flex-start;
+        @media (max-width: 768px) {
+            .edu-grid { grid-template-columns: 1fr; }
         }
 
-        .education-icon {
-            background-color: rgba(122, 32, 70, 0.2);
+        .edu-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.2rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .edu-logo {
+            background: linear-gradient(135deg, rgba(122, 32, 70, 0.3), rgba(74, 93, 78, 0.3));
             border: 1px solid rgba(122, 32, 70, 0.5);
             color: #d45087;
-            width: 45px;
-            height: 45px;
-            border-radius: 12px;
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
+            font-weight: 800;
             font-size: 1.2rem;
             flex-shrink: 0;
         }
 
-        .education-card h3 {
-            font-size: 1.1rem;
+        .edu-card h3 {
+            font-size: 1.2rem;
             color: var(--text-main);
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.4rem;
         }
 
-        .education-card p {
+        .edu-card p {
             color: var(--olive-light);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+        }
+
+        /* CONTACTO SECTION */
+        .contact-box {
+            background: linear-gradient(145deg, var(--card-bg), #0e1610);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 4rem 3rem;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+
+        .contact-box p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto 2.5rem auto;
         }
 
         /* FOOTER */
         footer {
             text-align: center;
             color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-top: 5rem;
+            font-size: 0.9rem;
+            margin-top: 6rem;
             border-top: 1px solid var(--border);
-            padding-top: 2rem;
+            padding-top: 2.5rem;
         }
     </style>
 </head>
 <body id="inicio">
 
+    <div class="bg-glow"></div>
+
     <!-- NAVBAR -->
     <nav>
-        <a href="#inicio" class="logo">Carla Ruggeri</a>
+        <a href="#inicio" class="nav-logo"><span>//</span> Carla Ruggeri</a>
         <ul>
             <li><a href="#sobre-mi">Sobre mí</a></li>
             <li><a href="#experiencia">Experiencia</a></li>
@@ -487,45 +584,43 @@
     </nav>
 
     <main>
-        <!-- HEADER / HERO -->
+        <!-- HERO / HEADER -->
         <header>
-            <h1>Carla Agustina Ruggeri</h1>
+    
+            <h1>Hola, soy <span>Carla Ruggeri</span></h1>
             <h2>Analista en Sistemas · Desarrollo, Testing & Análisis Funcional</h2>
             <p>Egresada de la Universidad Siglo 21 con formación integral en desarrollo de software, modelado de bases de datos, testing y análisis funcional. Transformando requerimientos en sistemas integrales y funcionales.</p>
             
             <div class="btn-group">
-                <a href="#proyectos" class="btn">Ver proyectos</a>
-                <a href="CV-AnalisisFuncional-RuggeriCarla.pdf" download class="btn outline">Descargar CV</a>
+                <a href="#proyectos" class="btn">Explorar proyectos</a>
+                <a href="CV-AnalisisFuncional-RuggeriCarla.pdf" download class="btn outline">Descargar CV (PDF)</a>
                 <a href="https://www.linkedin.com/in/carla--ruggeri" target="_blank" class="btn outline">LinkedIn</a>
             </div>
 
-            <div class="status-badge">
-                <span class="status-dot"></span>
-                Disponible para oportunidades profesionales · Remoto
+            <div class="status-indicator">
+                <span class="pulse-dot"></span>
+                Disponible para nuevas oportunidades profesionales · Remoto
             </div>
         </header>
 
         <!-- SOBRE MÍ -->
         <section id="sobre-mi">
             <div class="section-header">
-                <span>01</span>
+                <span>01.</span>
                 <h2>Sobre mí</h2>
             </div>
-            <div class="about-grid">
-                <div class="card about-text">
-                    <p>Soy <b>Analista en Sistemas</b> con una sólida <b>Especialización en Análisis Funcional</b> (UTN). Mi formación técnica me otorga una visión integral de punta a punta: desarrollo sistemas, diseño esquemas de bases de datos relacionales, ejecuto testing funcional/QA y lidero el relevamiento de procesos de negocio.</p>
+            <div class="bento-grid">
+                <div class="bento-card">
+                    <p>Soy <b>Analista en Sistemas</b> con una sólida <b>Especialización en Análisis Funcional</b> (UTN). Mi formación técnica me otorga una visión global de punta a punta: desarrollo sistemas, diseño esquemas de bases de datos relacionales, ejecuto testing funcional/QA y lidero el relevamiento de procesos de negocio.</p>
                     <p>Me enfoco en tender un puente sólido entre las necesidades operativas y la implementación técnica, aplicando estándares formales de especificación (SRS IEEE 830), modelado UML y metodologías ágiles.</p>
                 </div>
-                <div class="card">
-                    <dl class="info-list">
-                        <div><dt>Título</dt><dd>Analista Universitario en Sistemas</dd></div>
-                        <br>
-                        <div><dt>Especialización</dt><dd>Análisis Funcional (UTN)</dd></div>
-                        <br>
-                        <div><dt>Ubicación</dt><dd>Córdoba, Argentina</dd></div>
-                        <br>
-                        <div><dt>Modalidad</dt><dd>Remoto / Híbrido</dd></div>
-                    </dl>
+                <div class="bento-card">
+                    <ul class="meta-list">
+                        <li><span>Título</span>Analista en Sistemas</li>
+                        <li><span>Especialización</span>Análisis Funcional (UTN)</li>
+                        <li><span>Ubicación</span>Córdoba, Argentina</li>
+                        <li><span>Modalidad</span>Remoto / Global</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -533,19 +628,18 @@
         <!-- EXPERIENCIA -->
         <section id="experiencia">
             <div class="section-header">
-                <span>02</span>
+                <span>02.</span>
                 <h2>Experiencia Profesional</h2>
             </div>
-            
             <div class="experience-card">
                 <div class="experience-header">
                     <div>
                         <h3>Desarrolladora & Analista Funcional Freelance</h3>
-                        <p>Desarrollo Independiente de Sistemas</p>
+                        <p>Desarrollo Independiente de Sistemas & Consultoría</p>
                     </div>
-                    <span class="experience-date">2025 – Presente</span>
+                    <span class="badge-date">2025 – Presente</span>
                 </div>
-                <ul>
+                <ul class="experience-list">
                     <li><b>Gestión Integral de Proyectos:</b> Relevamiento de requerimientos, análisis funcional y modelado de procesos para clientes particulares y pequeños negocios.</li>
                     <li><b>Desarrollo Web & Mobile:</b> Diseño y desarrollo de sitios web profesionales y aplicaciones móviles para Android orientadas a optimizar la operatividad de los clientes.</li>
                     <li><b>Enfoque de Punta a Punta:</b> Cobertura de todo el ciclo de vida del software, desde la conceptualización y arquitectura de bases de datos hasta el testing y la puesta en marcha.</li>
@@ -556,7 +650,7 @@
         <!-- PROYECTOS -->
         <section id="proyectos">
             <div class="section-header">
-                <span>03</span>
+                <span>03.</span>
                 <h2>Proyectos Destacados</h2>
             </div>
             <div class="projects-grid">
@@ -567,7 +661,9 @@
                         <h3><a href="https://github.com/carla-ruggeri/Analisis-Funcional-Agil---E-commerce" target="_blank">🛒 E-commerce Ágil</a></h3>
                         <p>Análisis funcional completo de plataforma de comercio electrónico. Diseño de Story Mapping, Roadmap, Product Backlog, Sprint Backlog e Historias de Usuario.</p>
                     </div>
-                    <div class="project-tools"><b>Herramientas:</b> Jira, Confluence, Trello</div>
+                    <div class="project-tools">
+                        <span style="color: var(--text-muted)">Herramientas:</span> Jira, Confluence, Trello
+                    </div>
                 </div>
 
                 <div class="project-card">
@@ -576,7 +672,9 @@
                         <h3><a href="https://github.com/carla-ruggeri/Analisis-diseno-pruebas-de-Sistema-de-gestion-MKS" target="_blank">🏢 Sistema de Gestión MKS</a></h3>
                         <p>Modelado integral de procesos de negocio, arquitectura funcional, diseño de bases de datos y ejecución de casos de prueba para sistema ERP.</p>
                     </div>
-                    <div class="project-tools"><b>Herramientas:</b> UML, Casos de Uso, SQL</div>
+                    <div class="project-tools">
+                        <span style="color: var(--text-muted)">Herramientas:</span> UML, Casos de Uso, SQL
+                    </div>
                 </div>
 
                 <div class="project-card">
@@ -585,7 +683,9 @@
                         <h3><a href="https://github.com/carla-ruggeri/Documentacion-SRS-830-Sistema-de-Gestion-Hospitalaria" target="_blank">🏥 Gestión Hospitalaria</a></h3>
                         <p>Especificación formal de requerimientos de software (SRS) bajo norma internacional IEEE 830 para automatización y control en salud.</p>
                     </div>
-                    <div class="project-tools"><b>Herramientas:</b> SRS IEEE 830, Requerimientos</div>
+                    <div class="project-tools">
+                        <span style="color: var(--text-muted)">Herramientas:</span> SRS IEEE 830, Requerimientos
+                    </div>
                 </div>
 
                 <div class="project-card">
@@ -594,7 +694,9 @@
                         <h3><a href="https://github.com/carla-ruggeri/Analisis-Diseno-y-Pruebas-Netflix" target="_blank">🎬 Análisis Netflix Clone</a></h3>
                         <p>Modelado funcional, diseño de flujos de usuario y ejecución exhaustiva de pruebas de validación y QA manual para streaming.</p>
                     </div>
-                    <div class="project-tools"><b>Herramientas:</b> Diagramas de Flujo, Testing QA</div>
+                    <div class="project-tools">
+                        <span style="color: var(--text-muted)">Herramientas:</span> Diagramas de Flujo, Testing QA
+                    </div>
                 </div>
 
             </div>
@@ -603,35 +705,35 @@
         <!-- TECNOLOGÍAS -->
         <section id="tecnologias">
             <div class="section-header">
-                <span>04</span>
+                <span>04.</span>
                 <h2>Tecnologías y Competencias</h2>
             </div>
-            <div class="tech-container">
+            <div class="tech-grid">
                 <div class="tech-box">
                     <h3>Desarrollo y Datos</h3>
-                    <div class="tech-tags">
-                        <span class="tech-badge">Bases de Datos (SQL)</span>
-                        <span class="tech-badge">Modelado Entidad-Relación</span>
-                        <span class="tech-badge">Python / Android</span>
-                        <span class="tech-badge">HTML / CSS</span>
+                    <div class="tech-badges">
+                        <span class="badge">Bases de Datos (SQL)</span>
+                        <span class="badge">Modelado Entidad-Relación</span>
+                        <span class="badge">Python / Android</span>
+                        <span class="badge">HTML / CSS</span>
                     </div>
                 </div>
                 <div class="tech-box">
                     <h3>Análisis y Documentación</h3>
-                    <div class="tech-tags">
-                        <span class="tech-badge">Análisis Funcional</span>
-                        <span class="tech-badge">SRS (IEEE 830)</span>
-                        <span class="tech-badge">Modelado UML</span>
-                        <span class="tech-badge">Historias de Usuario</span>
+                    <div class="tech-badges">
+                        <span class="badge">Análisis Funcional</span>
+                        <span class="badge">SRS (IEEE 830)</span>
+                        <span class="badge">Modelado UML</span>
+                        <span class="badge">Historias de Usuario</span>
                     </div>
                 </div>
                 <div class="tech-box">
                     <h3>Testing y Gestión</h3>
-                    <div class="tech-tags">
-                        <span class="tech-badge">Testing & QA Manual</span>
-                        <span class="tech-badge">Scrum / Kanban</span>
-                        <span class="tech-badge">Jira & Confluence</span>
-                        <span class="tech-badge">Git & GitHub</span>
+                    <div class="tech-badges">
+                        <span class="badge">Testing & QA Manual</span>
+                        <span class="badge">Scrum / Kanban</span>
+                        <span class="badge">Jira & Confluence</span>
+                        <span class="badge">Git & GitHub</span>
                     </div>
                 </div>
             </div>
@@ -640,19 +742,19 @@
         <!-- FORMACIÓN -->
         <section id="formacion">
             <div class="section-header">
-                <span>05</span>
+                <span>05.</span>
                 <h2>Formación Académica</h2>
             </div>
-            <div class="education-grid">
-                <div class="education-card">
-                    <div class="education-icon">UTN</div>
+            <div class="edu-grid">
+                <div class="edu-card">
+                    <div class="edu-logo">UTN</div>
                     <div>
                         <h3>Especialización en Análisis Funcional</h3>
                         <p>UTN - Buenos Aires · 2026</p>
                     </div>
                 </div>
-                <div class="education-card">
-                    <div class="education-icon">U21</div>
+                <div class="edu-card">
+                    <div class="edu-logo">U21</div>
                     <div>
                         <h3>Analista Universitario en Sistemas</h3>
                         <p>Universidad Siglo 21 · 2022 – 2025</p>
@@ -664,11 +766,11 @@
         <!-- CONTACTO -->
         <section id="contacto">
             <div class="section-header">
-                <span>06</span>
+                <span>06.</span>
                 <h2>Contacto</h2>
             </div>
-            <div class="card" style="text-align: center; padding: 3rem;">
-                <p style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 1.1rem;">Abierta a nuevas oportunidades profesionales en desarrollo, testing o análisis de sistemas. Escribime y te respondo dentro de las 24 horas.</p>
+            <div class="contact-box">
+                <p>Abierta a nuevas oportunidades profesionales en desarrollo, testing o análisis de sistemas. Escribime y coordinemos una entrevista.</p>
                 <div class="btn-group" style="justify-content: center;">
                     <a href="mailto:ruggericarlasistemas@gmail.com" class="btn">Enviar un correo</a>
                     <a href="https://www.linkedin.com/in/carla--ruggeri" target="_blank" class="btn outline">LinkedIn</a>
@@ -677,7 +779,7 @@
         </section>
 
         <footer>
-            <p>© 2026 Carla Agustina Ruggeri · Villa del Rosario, Córdoba, Argentina</p>
+            <p>© 2026 Carla Agustina Ruggeri</p>
         </footer>
     </main>
 
