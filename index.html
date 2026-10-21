@@ -720,7 +720,7 @@
                             <span class="project-tag" style="background-color: rgba(122, 32, 70, 0.25); color: #e26398; border-color: var(--burgundy); margin-bottom: 0;">PROYECTO COMPLETO · POS & BUSINESS INTELLIGENCE</span>
                             <span style="font-size: 0.8rem; color: var(--olive-light); font-weight: 600;">Feb 2026 – Oct 2026</span>
                         </div>
-                        <h3 style="font-size: 1.6rem;"><a href="https://github.com/carla-ruggeri/Analisis-diseno-pruebas-de-Sistema-de-gestion-MKS" target="_blank">🛍️ Plataforma POS & Business Intelligence (MOKOSO'S)</a></h3>
+                        <h3 style="font-size: 1.6rem;"><a href="https://github.com/carla-ruggeri/Analisis-diseno-pruebas-de-Sistema-de-gestion-MKS" target="_blank">🛍️ Plataforma POS & Business Intelligence</a></h3>
                         <p style="font-size: 1.05rem;">Solución integral de Punto de Venta (POS) y Business Intelligence para retail indumentaria. Relevamiento de procesos, diseño UI/UX responsivo y empaquetado mobile para Android con Capacitor. Desarrollado con arquitectura relacional en la nube (Supabase / PostgreSQL) sincronizada en tiempo real. Incluye gestión de inventario por curvas de talle/temporada, caja/ventas con descuentos y agendamiento de clientes, dashboard de salud financiera y motor de Inteligencia de Negocios que sugiere reposición de stock basada en rotación crítica por producto/talle.</p>
                     </div>
 
@@ -922,11 +922,38 @@
                 </div>
             </div>
         </section>
-
-        <footer>
-            <p>© 2026 Carla Agustina Ruggeri</p>
-        </footer>
+        
+    <!-- MODAL PARA AMPLIAR IMÁGENES (LIGHTBOX) -->
+        <div id="image-modal" class="modal" onclick="closeModal()">
+            <span class="modal-close">&times;</span>
+            <img class="modal-content" id="modal-img" alt="Captura ampliada">
+            <div id="modal-caption"></div>
+        </div>
+            <footer>
+                <p>© 2026 Carla Agustina Ruggeri</p>
+            </footer>
     </main>
+<script>
+        function openModal(imgElement) {
+            const modal = document.getElementById("image-modal");
+            const modalImg = document.getElementById("modal-img");
+            const captionText = document.getElementById("modal-caption");
 
+            modal.style.display = "flex";
+            modalImg.src = imgElement.src;
+            captionText.innerHTML = imgElement.nextElementSibling ? imgElement.nextElementSibling.innerText : '';
+        }
+
+        function closeModal() {
+            document.getElementById("image-modal").style.display = "none";
+        }
+
+        // Permitir cerrar presionado la tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
