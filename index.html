@@ -480,7 +480,53 @@
             flex-wrap: wrap;
             gap: 0.5rem; /* Separación más compacta */
         }
+/* ESTILOS DEL MODAL LIGHTBOX */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(8px);
+            z-index: 99999; /* Asegura que esté por encima de la navbar fija */
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 1rem;
+        }
 
+        .modal-content {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            border: 1px solid var(--border);
+            object-fit: contain;
+        }
+
+        #modal-caption {
+            margin-top: 1rem;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #ffffff;
+            font-size: 38px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Cursor que indica que la captura se puede agrandar */
+        .gallery-item img {
+            cursor: zoom-in;
+        }
         /* ETIQUETAS MÁS CHICAS Y COMPACTAS */
         .badge {
             background-color: rgba(74, 93, 78, 0.15);
