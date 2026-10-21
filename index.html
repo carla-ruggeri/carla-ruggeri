@@ -727,39 +727,39 @@
                     <!-- GALERÍA COMPLETA DE INTERFACES (DEL 1 AL 9) -->
                     <div class="project-gallery">
                         <div class="gallery-item">
-                            <img src="Img/1.InicioSesion.png" alt="Inicio de Sesión" loading="lazy">
+                            <img src="Img/1.InicioSesion.png" alt="Inicio de Sesión" onclick="openModal(this)" loading="lazy">
                             <span>1. Inicio de Sesión</span>
                         </div>
                         <div class="gallery-item">
-                            <img src="Img/2.Dashboard.png" alt="Dashboard Principal" loading="lazy">
+                            <img src="Img/2.Dashboard.png" alt="Dashboard Principal" onclick="openModal(this)" loading="lazy">
                             <span>2. Dashboard Principal</span>
                         </div>
                         <div class="gallery-item">
-                            <img src="Img/3.Inventario.png" alt="Gestión de Inventario" loading="lazy">
+                            <img src="Img/3.Inventario.png" alt="Gestión de Inventario" onclick="openModal(this)" loading="lazy">
                             <span>3. Curvas de Talle & Stock </span>
                         </div>
                         <div class="gallery-item">
-                            <img src="Img/4.Ventas.png" alt="Punto de Venta" loading="lazy">
+                            <img src="Img/4.Ventas.png" alt="Punto de Venta" onclick="openModal(this)" loading="lazy">
                             <span>4. Punto de Venta / Caja</span>
                         </div>
                         <div class="gallery-item">
-                            <img src="Img/5.HistorialVentas.png" alt="Historial de Ventas" loading="lazy">
+                            <img src="Img/5.HistorialVentas.png" alt="Historial de Ventas" onclick="openModal(this)" loading="lazy">
                             <span>5. Historial de Ventas</span>
                         </div>
                         <div class="gallery-item">
-                            <img src="Img/6.Clientes.png" alt="Gestión de Clientes" loading="lazy">
+                            <img src="Img/6.Clientes.png" alt="Gestión de Clientes" onclick="openModal(this)" loading="lazy">
                             <span>6. Gestión de Clientes</span>
                         </div>
                         <div class="gallery-item">
-                            <img src="Img/7.Reportes.png" alt="Reportes Financieros" loading="lazy">
+                            <img src="Img/7.Reportes.png" alt="Reportes Financieros" onclick="openModal(this)" loading="lazy">
                             <span>7. Dashboard Financiero</span>
                         </div>
                         <div class="gallery-item">
-                            <img src="Img/8.Rendimiento.png" alt="Rendimiento de Productos" loading="lazy">
+                            <img src="Img/8.Rendimiento.png" alt="Rendimiento de Productos" onclick="openModal(this)" loading="lazy">
                             <span>8. Rendimiento de Productos</span>
                         </div>
                         <div class="gallery-item">
-                            <img src="Img/9.Inteligencia.png" alt="Motor BI & Reposición" loading="lazy">
+                            <img src="Img/9.Inteligencia.png" alt="Motor BI & Reposición" onclick="openModal(this)" loading="lazy">
                             <span>9. Motor BI & Reposición</span>
                         </div>
                     </div>
@@ -933,11 +933,14 @@
                 <p>© 2026 Carla Agustina Ruggeri</p>
             </footer>
     </main>
-<script>
+
+    <script>
         function openModal(imgElement) {
             const modal = document.getElementById("image-modal");
             const modalImg = document.getElementById("modal-img");
             const captionText = document.getElementById("modal-caption");
+
+            if (!modal || !modalImg) return;
 
             modal.style.display = "flex";
             modalImg.src = imgElement.src;
@@ -945,15 +948,29 @@
         }
 
         function closeModal() {
-            document.getElementById("image-modal").style.display = "none";
+            const modal = document.getElementById("image-modal");
+            if (modal) {
+                modal.style.display = "none";
+            }
         }
 
-        // Permitir cerrar presionado la tecla ESC
+        // Evitar que al hacer clic en la imagen ampliada se cierre el modal inmediatamente
+        document.addEventListener('DOMContentLoaded', function() {
+            const modalImg = document.getElementById("modal-img");
+            if (modalImg) {
+                modalImg.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+        });
+
+        // Permitir cerrar presionando la tecla ESC
         document.addEventListener('keydown', function(event) {
             if (event.key === "Escape") {
                 closeModal();
             }
         });
     </script>
+    
 </body>
 </html>
